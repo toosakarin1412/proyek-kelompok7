@@ -2,4 +2,7 @@
 ## UAS Lab Pemograman Dasar
 
 ### Anggota
-Diky Wahyudi (2108107010031)
+Diky Wahyudi/2108107010031
+Nadia
+Leni
+Raihan
