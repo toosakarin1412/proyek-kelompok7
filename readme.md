@@ -4,5 +4,5 @@
 ### Anggota
     Diky Wahyudi/2108107010031
     Nadia Muqarramah/2108107010019
-    Leni
+    Leni Agustina/2108107010070 
     Muhammad Raihan Adnan/2108107010100
