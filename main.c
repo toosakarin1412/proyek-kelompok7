@@ -6,6 +6,11 @@ peserta readlogin(){
     // 
 }
 
-int main(){
+int main(int argc, char *argv[]){
+    if(argc != 3){
+        printf("Silahkan masukkan username dan password\n");
+        return EXIT_FAILURE;
+    }
+    
     return EXIT_SUCCESS;
 }
