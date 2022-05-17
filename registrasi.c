@@ -15,6 +15,9 @@ int main(int argc, char *argv[]){
         return EXIT_FAILURE;
     }
 
+    strcpy(data.username, argv[1]);
+    strcpy(data.password, argv[2]);
+
     write2bin(data);
     printf("Registrasi berhasil...\n");
     return EXIT_SUCCESS;
