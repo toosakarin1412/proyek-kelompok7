@@ -8,6 +8,12 @@ peserta readlogin(){
     return data;
 }
 
+soal readsoal(){
+    soal data_soal;
+
+    return data_soal;
+}
+
 int main(int argc, char *argv[]){
     if(argc != 3){
         printf("Silahkan masukkan username dan password\n");
@@ -26,4 +32,3 @@ int main(int argc, char *argv[]){
     }
 
     return EXIT_SUCCESS;
-}
