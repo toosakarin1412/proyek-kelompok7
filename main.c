@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "head.h"
 
-char soal[100][400];
+char data_soal[100][400];
 int jml_soal = 0;
 
 peserta readlogin(){
@@ -22,12 +23,50 @@ void readsoal(){
     char buffer[255];
     jml_soal = 0;
     while(fgets(buffer, sizeof(buffer), fp) != NULL){
-        strcpy(soal[jml_soal], buffer);
+        strcpy(data_soal[jml_soal], buffer);
         int pjg_string = strlen(buffer);
-        soal[jml_soal][pjg_string-1] = '\0';
+        data_soal[jml_soal][pjg_string-1] = '\0';
         jml_soal++;
     }
     fclose(fp);
+}
+
+soal parseSoal(char *textsoal){
+    char *token;
+    soal curSoal;
+    int hitung = 0;
+    //printf("%s\n", textsoal);
+    token = strtok(textsoal, "@");
+    while(token != NULL){
+        //printf("%s\n", token);
+        if(hitung == 0){
+            curSoal.kunci = token[0];
+        }else if(hitung == 1){
+            strcpy(curSoal.soal, token);
+        }else if(hitung == 2){
+            strcpy(curSoal.pilihan, token);
+        }
+        hitung++;
+        token = strtok(NULL, "@");
+    }
+
+    return curSoal;
+}
+
+void parsePilihan(char *pilihan){
+
+}
+
+int *randomSoal(int jmlsoal){
+    time_t t;
+    static int playingSoal[15];
+    srand((unsigned)time(&t));
+    for(int i = 0;i < 15;i++){
+        playingSoal[i] = rand()%jmlsoal;
+        printf("%d\n", playingSoal[i]);
+    }
+
+    return playingSoal;
 }
 
 int main(int argc, char *argv[]){
@@ -48,8 +87,16 @@ int main(int argc, char *argv[]){
     }
 
     readsoal();
+    soal buffer_soal;
+    int *playingSoal;
+    playingSoal = randomSoal(jml_soal);
     for(int i = 0;i < jml_soal;i++){
-        printf("%s\n", soal[i]);
+        printf("====================\n");
+        printf("No Soal : %d\n", playingSoal[i]);
+        buffer_soal = parseSoal(data_soal[i]);
+        printf("Kunci : %c\n", buffer_soal.kunci);
+        printf("Soal : %s\n", buffer_soal.soal);
+        printf("Pilihan : %s\n", buffer_soal.pilihan);
     }
 
     return EXIT_SUCCESS;

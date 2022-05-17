@@ -1,2 +1,2 @@
-A@Siapakah presiden Indonesia yang ke-7 ?@Joko Widodo@Soeharto@Megawati@SBY
-B@Siapa penemu bola lampu ?@Issac Newton@Thomas alfa edison@Alexsander Graham bell@Platos
+A@Siapakah presiden Indonesia yang ke-7 ?@Joko Widodo$Soeharto$Megawati$SBY
+B@Siapa penemu bola lampu ?@Issac Newton$Thomas alfa edison$Alexsander Graham bell$Platos
