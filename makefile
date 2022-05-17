@@ -1,5 +1,5 @@
 main:
-	gcc main.c -o build/main -Wall
+	gcc main.c -o build/main
 
 reg:
-	gcc registrasi.c -o registrasi -Wall
+	gcc registrasi.c -o build/registrasi -Wall
