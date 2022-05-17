@@ -4,13 +4,14 @@
 #include "head.h"
 
 char soal[100][255];
+int jml_soal = 0;
 
 peserta readlogin(){
-     peserta data;
-     FILE *fp = fopen("database/login.bin", "rb");
-     fread(&data, sizeof(peserta), 1, fp);
-     fclose(fp);
-     return data;
+    peserta data;
+    FILE *fp = fopen("database/login.bin", "rb");
+    fread(&data, sizeof(peserta), 1, fp);
+    fclose(fp);
+    return data;
 }
 
 void readsoal(){
@@ -19,10 +20,12 @@ void readsoal(){
         printf("File tidak ditemukan\n");
     }
     char buffer[255];
-    int hitung = 0;
+    jml_soal = 0;
     while(fgets(buffer, sizeof(buffer), fp) != NULL){
-        strcpy(soal[hitung], buffer);
-        hitung++;
+        strcpy(soal[jml_soal], buffer);
+        int pjg_string = strlen(buffer);
+        soal[jml_soal][pjg_string-1] = '\0';
+        jml_soal++;
     }
     fclose(fp);
 }
@@ -45,7 +48,9 @@ int main(int argc, char *argv[]){
     }
 
     readsoal();
-    printf("%s\n", soal[0]);
+    for(int i = 0;i < jml_soal;i++){
+        printf("%s\n", soal[i]);
+    }
 
     return EXIT_SUCCESS;
 }
