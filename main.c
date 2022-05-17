@@ -10,6 +10,10 @@ int jml_soal = 0;
 peserta readlogin(){
     peserta data;
     FILE *fp = fopen("database/login.bin", "rb");
+    if(fp == NULL){
+        printf("Silahkan registrasi terlebih dahulu\n");
+        exit(1);
+    }
     fread(&data, sizeof(peserta), 1, fp);
     fclose(fp);
     return data;
@@ -54,7 +58,13 @@ soal parseSoal(char *textsoal){
 }
 
 void parsePilihan(char *pilihan){
-
+    char *token;char huruf = 'A';
+    token = strtok(pilihan, "$");
+    while(token != NULL){
+        printf("%c.%s\n", huruf, token);
+        huruf++;
+        token = strtok(NULL, "$");
+    }
 }
 
 int *randomSoal(int jmlsoal){
@@ -63,7 +73,7 @@ int *randomSoal(int jmlsoal){
     srand((unsigned)time(&t));
     for(int i = 0;i < 15;i++){
         playingSoal[i] = rand()%jmlsoal;
-        printf("%d\n", playingSoal[i]);
+        //printf("%d\n", playingSoal[i]);
     }
 
     return playingSoal;
@@ -90,13 +100,12 @@ int main(int argc, char *argv[]){
     soal buffer_soal;
     int *playingSoal;
     playingSoal = randomSoal(jml_soal);
-    for(int i = 0;i < jml_soal;i++){
+    for(int i = 0;i < 15;i++){
         printf("====================\n");
-        printf("No Soal : %d\n", playingSoal[i]);
-        buffer_soal = parseSoal(data_soal[i]);
-        printf("Kunci : %c\n", buffer_soal.kunci);
+        buffer_soal = parseSoal(data_soal[playingSoal[i]]);
+        
         printf("Soal : %s\n", buffer_soal.soal);
-        printf("Pilihan : %s\n", buffer_soal.pilihan);
+        parsePilihan(buffer_soal.pilihan);
     }
 
     return EXIT_SUCCESS;
