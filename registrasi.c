@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
     peserta data;
     if(argc != 3){
         printf("Silahkan masukkan username dan password\n");
-        printf("./reg [username] [password\n");
+        printf("./reg [username] [password]\n");
         return EXIT_FAILURE;
     }
 
