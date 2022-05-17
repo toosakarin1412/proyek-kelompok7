@@ -77,7 +77,7 @@ int *randomSoal(int jmlsoal){
     srand((unsigned)time(&t));
     for(int i = 0;i < 15;i++){
         playingSoal[i] = rand()%jmlsoal;
-        printf("%d\n", playingSoal[i]);
+        //printf("%d\n", playingSoal[i]);
     }
 
     return playingSoal;
@@ -104,12 +104,21 @@ int main(int argc, char *argv[]){
     soal buffer_soal;
     int *playingSoal;
     playingSoal = randomSoal(jml_soal);
+    char jawaban;
     for(int i = 0;i < 15;i++){
         printf("====================\n");
         buffer_soal = parseSoal(data_soal[playingSoal[i]]);
         
         printf("Soal : %s\n", buffer_soal.soal);
         parsePilihan(buffer_soal.pilihan);
+        
+        printf("Jawab : ");
+        scanf(" %c", &jawaban);
+        if(jawaban == buffer_soal.kunci){
+            printf("Selamat anda benar\n");
+        }else{
+            printf("Yah anda salah\n");
+        }
     }
 
     return EXIT_SUCCESS;
