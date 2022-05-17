@@ -5,10 +5,13 @@
 
 char soal[100][255];
 
-// peserta readlogin(){
-//     peserta data;
-//     return data;
-// }
+peserta readlogin(){
+     peserta data;
+     FILE *fp = fopen("database/login.bin", "rb");
+     fread(&data, sizeof(peserta), 1, fp);
+     fclose(fp);
+     return data;
+}
 
 void readsoal(){
     FILE *fp = fopen("database/soal.txt", "r");
