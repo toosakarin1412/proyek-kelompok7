@@ -4,7 +4,9 @@
 #include "head.h"
 
 void write2bin(peserta data){
-    //
+    FILE *fp = fopen("database/login.bin", "wb");
+    fwrite(&data, sizeof(peserta), 1, fp);
+    fclose(fp);
 }
 
 int main(int argc, char *argv[]){
