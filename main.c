@@ -3,15 +3,25 @@
 #include <string.h>
 #include "head.h"
 
-peserta readlogin(){
-    peserta data;
-    return data;
-}
+char soal[100][255];
 
-soal readsoal(){
-    soal data_soal;
+// peserta readlogin(){
+//     peserta data;
+//     return data;
+// }
 
-    return data_soal;
+void readsoal(){
+    FILE *fp = fopen("database/soal.txt", "r");
+    if(fp == NULL){
+        printf("File tidak ditemukan\n");
+    }
+    char buffer[255];
+    int hitung = 0;
+    while(fgets(buffer, sizeof(buffer), fp) != NULL){
+        strcpy(soal[hitung], buffer);
+        hitung++;
+    }
+    fclose(fp);
 }
 
 int main(int argc, char *argv[]){
@@ -31,4 +41,8 @@ int main(int argc, char *argv[]){
         return EXIT_FAILURE;
     }
 
+    readsoal();
+    printf("%s\n", soal[0]);
+
     return EXIT_SUCCESS;
+}
