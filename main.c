@@ -36,11 +36,13 @@ void readsoal(){
 }
 
 soal parseSoal(char *textsoal){
+    char buffer[255];
     char *token;
     soal curSoal;
     int hitung = 0;
     //printf("%s\n", textsoal);
-    token = strtok(textsoal, "@");
+    strcpy(buffer, textsoal);
+    token = strtok(buffer, "@");
     while(token != NULL){
         //printf("%s\n", token);
         if(hitung == 0){
@@ -57,9 +59,11 @@ soal parseSoal(char *textsoal){
     return curSoal;
 }
 
-void parsePilihan(char *pilihan){
+void parsePilihan(char pilihan[255]){
+    char buffer[255];
     char *token;char huruf = 'A';
-    token = strtok(pilihan, "$");
+    strcpy(buffer, pilihan);
+    token = strtok(buffer, "$");
     while(token != NULL){
         printf("%c.%s\n", huruf, token);
         huruf++;
@@ -73,7 +77,7 @@ int *randomSoal(int jmlsoal){
     srand((unsigned)time(&t));
     for(int i = 0;i < 15;i++){
         playingSoal[i] = rand()%jmlsoal;
-        //printf("%d\n", playingSoal[i]);
+        printf("%d\n", playingSoal[i]);
     }
 
     return playingSoal;
