@@ -3,6 +3,10 @@
 #include <string.h>
 #include "head.h"
 
+/*
+    Fungsi untuk membuat file login.bin
+    dan memasukkan struct peserta kedalam file
+*/
 void write2bin(peserta data){
     FILE *fp = fopen("database/login.bin", "wb");
     fwrite(&data, sizeof(peserta), 1, fp);
