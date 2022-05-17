@@ -3,15 +3,21 @@
 #include <string.h>
 #include "head.h"
 
+/*
+    Fungsi untuk membuat file login.bin
+    dan memasukkan struct peserta kedalam file
+*/
 void write2bin(peserta data){
-    //
+    FILE *fp = fopen("database/login.bin", "wb");
+    fwrite(&data, sizeof(peserta), 1, fp);
+    fclose(fp);
 }
 
 int main(int argc, char *argv[]){
     peserta data;
     if(argc != 3){
         printf("Silahkan masukkan username dan password\n");
-        printf("./reg [username] [password\n");
+        printf("./reg [username] [password]\n");
         return EXIT_FAILURE;
     }
 

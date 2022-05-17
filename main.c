@@ -3,7 +3,7 @@
 #include <string.h>
 #include "head.h"
 
-char soal[100][255];
+char soal[100][400];
 int jml_soal = 0;
 
 peserta readlogin(){
@@ -37,9 +37,9 @@ int main(int argc, char *argv[]){
     }
 
     peserta data;
-    //data = readlogin();
-    strcpy(data.username, "admin");
-    strcpy(data.password, "admin");
+    data = readlogin();
+    // strcpy(data.username, "admin");
+    // strcpy(data.password, "admin");
     if(strcmp(data.username, argv[1]) == 0 && strcmp(data.password, argv[2]) == 0){
         printf("Login berhasil\n");
     }else{
