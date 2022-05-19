@@ -7,9 +7,12 @@
     Leni Agustina/2108107010070 
     Muhammad Raihan Adnan/2108107010100
 
-### Cara Compile    
+### Cara Compile Untuk Pengembang
 ##### main.c
 > make main
 
 ##### regostrasi.c
 > make reg
+
+### Cara Compile Release version
+> make release
