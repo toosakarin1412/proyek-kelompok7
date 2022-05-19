@@ -2,10 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 #include "head.h"
 
 char data_soal[100][400];
 int jml_soal = 0;
+
+char score[15][30] = {"50.000", "125.000", "250.000", "500.000", "1.000.000",
+                        "2.000.000", "4.000.000", "8.000.000", "16.000.000", "32.000.000",
+                        "64.000.000", "125 Juta", "250 Juta", "500 Juta", "1 Milyar"};
 
 peserta readlogin(){
     peserta data;
@@ -77,7 +82,7 @@ int *randomSoal(int jmlsoal){
     srand((unsigned)time(&t));
     for(int i = 0;i < 15;i++){
         playingSoal[i] = rand()%jmlsoal;
-        printf("%d\n", playingSoal[i]);
+        //printf("%d\n", playingSoal[i]);
     }
 
     return playingSoal;
@@ -100,17 +105,58 @@ int main(int argc, char *argv[]){
         return EXIT_FAILURE;
     }
 
+    system("clear");
+
     readsoal();
     soal buffer_soal;
-    int *playingSoal;
+    int *playingSoal;char lanjut;
     playingSoal = randomSoal(jml_soal);
+    char jawaban;char uang[30] = "0";
     for(int i = 0;i < 15;i++){
-        printf("====================\n");
+        printf("========================================\n");
+        printf("SELAMAT DATANG DI PERMAINAN\n");
+        printf("WHO WANT TO BE A MILLIONARE\n");
+        printf("========================================\n");
+        printf("Hadiah Anda Saat Ini : Rp.%s\n", uang);
+        printf("Next Hadiah : %s\n", score[i]);
+        printf("========================================\n");
+
+        // Soal dan mekanisme jawab
         buffer_soal = parseSoal(data_soal[playingSoal[i]]);
-        
         printf("Soal : %s\n", buffer_soal.soal);
         parsePilihan(buffer_soal.pilihan);
+        printf("Jawab : ");scanf(" %c", &jawaban);
+        jawaban = toupper(jawaban);
+        printf("========================================\n");
+        if(jawaban == buffer_soal.kunci){
+            strcpy(uang, score[i]);
+            printf("Selamat anda benar\n");
+            printf("========================================\n");
+            printf("Hadiah Anda Saat Ini : Rp.%s\n", uang);
+            if(i == 14){
+                printf("SELAMAT ANDA TELAH MENYELESAIKAN PERMAINAN\nWHO WANT TO BE A MILLIONARE\n");
+                break;
+            }
+            printf("Apakah anda ingin lanjut ? (Y/N) : ");
+            scanf(" %c", &lanjut);
+            if(lanjut == 'Y' || lanjut == 'y'){
+                printf("========================================\n");
+                system("clear");
+                continue;
+            }else{
+                printf("========================================\n");
+                printf("Selamat Anda berhak membawa uang sebesar : Rp.%s\n", uang);
+                break;
+            }
+        }else{
+            printf("Yah anda salah\n");
+            printf("Maaf anda harus pulang dengan tangan kosong\n");
+            printf("========================================\n");
+            break;
+        }
     }
+
+    printf("Permainan Selesai\n");
 
     return EXIT_SUCCESS;
 }
